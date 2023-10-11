@@ -8,6 +8,18 @@ const app = express();
 // Middleware for parsing request body
 app.use(express.json());
 
+//allow cors
+app.use(
+  cors({
+    origin: "https://localhost:3000",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   next();
+// });
 // Routes
 app.use("/books", bookRoutes);
 
