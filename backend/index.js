@@ -2,6 +2,7 @@ import express from "express";
 import { PORT, MONGODB_URI } from "./config.js";
 import mongoose from "mongoose";
 import bookRoutes from "./routes/bookRoutes.js";
+import cors from "cors";
 
 const app = express();
 
@@ -9,17 +10,20 @@ const app = express();
 app.use(express.json());
 
 //allow cors
-app.use(
-  cors({
-    origin: "https://localhost:3000",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+app.use(cors());
+
+// app.use(
+//   cors({
+//     origin: "https://localhost:3000",
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//   })
+// );
 // app.use((req, res, next) => {
 //   res.setHeader("Access-Control-Allow-Origin", "*");
 //   next();
 // });
+
 // Routes
 app.use("/books", bookRoutes);
 
