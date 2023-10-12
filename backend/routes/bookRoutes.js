@@ -6,7 +6,7 @@ const router = express.Router();
 //get all books route
 router.get("/", async (req, res) => {
   try {
-    const books = await Book.find({});
+    const books = await Book.find({}).sort({ createdAt: -1 });
     return res.status(200).send({
       count: books.length,
       data: books,
